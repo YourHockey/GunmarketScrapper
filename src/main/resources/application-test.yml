@@ -23,3 +23,5 @@ spring:
 logging:
   file:
     name: databasefiller-app.log
+
+admin-service-path: http://localhost:8081
