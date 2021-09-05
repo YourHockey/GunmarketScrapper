@@ -1,0 +1,27 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    username: postgres
+    password: root
+    url: jdbc:postgresql://localhost:5432/scrapper
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+    separator: ;;
+  jpa:
+    show-sql: true
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        jdbc.lob.non_contextual_creation: true
+        format_sql: true
+
+logging:
+  file:
+    name: databasefiller-app.log
+
+admin-service-path: http://localhost:8081
