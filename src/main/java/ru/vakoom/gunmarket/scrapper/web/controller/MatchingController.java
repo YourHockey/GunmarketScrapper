@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.vakoom.gunmarket.commondatalayer.model.Product;
 import ru.vakoom.gunmarket.scrapper.model.MatcherOffer;
+import ru.vakoom.gunmarket.scrapper.model.ProductDto;
 import ru.vakoom.gunmarket.scrapper.model.ScrapperOffer;
 import ru.vakoom.gunmarket.scrapper.service.MatchingService;
 
@@ -23,7 +23,7 @@ public class MatchingController {
 
     @CrossOrigin
     @PostMapping(value = "match", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String match(@RequestBody Map.Entry<ScrapperOffer, Product> matchPair) {
+    public String match(@RequestBody Map.Entry<ScrapperOffer, ProductDto> matchPair) {
         MatcherOffer matcherOffer = matchingService.createFromMatch(matchPair.getKey(), matchPair.getValue());
         matchingService.add(matcherOffer);
         //ToDo подумать над тем чтоюы возвращать матчер

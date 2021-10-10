@@ -2,9 +2,9 @@ package ru.vakoom.gunmarket.scrapper.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.vakoom.gunmarket.commondatalayer.dto.OfferDto;
-import ru.vakoom.gunmarket.commondatalayer.model.Product;
+import ru.vakoom.gunmarket.scrapper.model.DraftOffer;
 import ru.vakoom.gunmarket.scrapper.model.MatcherOffer;
+import ru.vakoom.gunmarket.scrapper.model.ProductDto;
 import ru.vakoom.gunmarket.scrapper.model.ScrapperOffer;
 import ru.vakoom.gunmarket.scrapper.repository.MatcherOfferRepository;
 
@@ -20,14 +20,14 @@ public class MatchingService {
     private final ShopService shopService;
 
     @Deprecated(since = "Переделать нормально через стримы")
-    public List<OfferDto> filterByMatched(List<ScrapperOffer> scrapperOffers) {
+    public List<DraftOffer> filterByMatched(List<ScrapperOffer> scrapperOffers) {
         return scrapperOffers.stream()
                 .map(scrapper -> {
                     var matcherOffer = matcherOfferRepository.findByLink(scrapper.getLink());
                     if (matcherOffer == null) {
                         return null;
                     }
-                    return new OfferDto()
+                    return new DraftOffer()
                             .setProductId(matcherOffer.getProductId())
                             .setShopName(scrapper.getShopName())
                             .setInStock(scrapper.getInStore())
@@ -38,8 +38,8 @@ public class MatchingService {
                 .collect(Collectors.toList());
     }
 
-    public MatcherOffer createFromMatch(ScrapperOffer scrapper, Product product) {
-        Long shopId = shopService.getByName(scrapper.getShopName()).getShopId();
+    public MatcherOffer createFromMatch(ScrapperOffer scrapper, ProductDto product) {
+        Long shopId = shopService.getByName(scrapper.getShopName()).getId();
 
         return new MatcherOffer()
                 .setProductInShopId(product.getProductId() + "&" + shopId)

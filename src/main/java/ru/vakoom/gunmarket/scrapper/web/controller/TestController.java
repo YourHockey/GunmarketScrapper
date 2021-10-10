@@ -6,7 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.vakoom.gunmarket.commondatalayer.dto.OfferDto;
+import ru.vakoom.gunmarket.scrapper.model.DraftOffer;
 import ru.vakoom.gunmarket.scrapper.service.RefreshingService;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class TestController {
 
     @CrossOrigin
     @GetMapping(value = "/scrap", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<OfferDto> getProducts() {
+    public List<DraftOffer> getProducts() {
         return refreshingService.refreshOffers();
     }
 

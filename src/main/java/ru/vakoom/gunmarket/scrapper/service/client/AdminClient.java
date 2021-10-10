@@ -8,7 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import ru.vakoom.gunmarket.commondatalayer.dto.OfferDto;
+import ru.vakoom.gunmarket.scrapper.model.DraftOffer;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +23,7 @@ public class AdminClient {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public ResponseEntity<List<OfferDto>> sendOffers(List<OfferDto> offers) {
+    public ResponseEntity<List<DraftOffer>> sendOffers(List<DraftOffer> offers) {
         String url = ADMIN_SERVICE_BASE_PATH + ADMIN_SERVICE_REFRESH_OFFERS_PATH;
 
         return restTemplate.exchange(
