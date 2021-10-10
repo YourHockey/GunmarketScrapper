@@ -29,7 +29,7 @@ public class Scrapper implements InitializingBean {
     @Autowired
     protected ScrapperService scrapperService;
     @Autowired
-    protected ScrapperOfferRepository offerRepository;
+    protected ScrapperOfferRepository scrapperOfferRepository;
     @Autowired
     protected ScrappingDateLogRepository scrappingDateLogRepository;
     //    @Autowired
@@ -47,7 +47,9 @@ public class Scrapper implements InitializingBean {
                         .setName("ScrapperOffer " + i)
                         .setPrice(i * 100.1)
                         .setLink("ScrapperOfferLink " + i)
+                        .setInStore(true)
                         .setShopName("shop"))
+                .peek(offer -> scrapperOfferRepository.save(offer))
                 .collect(Collectors.toList());
     }
 

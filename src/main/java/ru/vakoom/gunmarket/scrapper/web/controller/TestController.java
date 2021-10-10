@@ -19,8 +19,8 @@ public class TestController {
     private final RefreshingService refreshingService;
 
     @CrossOrigin
-    @GetMapping(value = "/scrap", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<DraftOffer> getProducts() {
+    @GetMapping(value = "/refreshOffers", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<DraftOffer> testRefresh() {
         return refreshingService.refreshOffers();
     }
 

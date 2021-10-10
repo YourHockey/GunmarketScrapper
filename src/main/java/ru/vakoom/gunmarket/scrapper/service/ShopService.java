@@ -13,10 +13,9 @@ public class ShopService {
 
     private final AdminClient adminClient;
 
-    @Deprecated(since = "Переделать на нормальный вызов")
     public ShopDto getByName(String name) {
-        List<ShopDto> shops = adminClient.getShops().getBody();
-        return new ShopDto();
+        ShopDto shop = adminClient.getShopByName(name).getBody();
+        return shop;
     }
 
 }
