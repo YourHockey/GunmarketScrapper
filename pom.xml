@@ -28,11 +28,6 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>ru.gunmarket</groupId>-->
-<!--            <artifactId>gunmarket-common-data-layer</artifactId>-->
-<!--            <version>${gunamrketcommondatalayer.version}</version>-->
-<!--        </dependency>-->
         <!--        Spring-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
